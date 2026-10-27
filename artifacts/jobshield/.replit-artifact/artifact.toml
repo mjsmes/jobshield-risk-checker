@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "JobShield — Job Advert Risk Checker"
+description = "A privacy-first job advert checker that analyzes pasted job offers for common scam warning signs and explains safer next steps."
+version = "1.0.0"
+id = "artifacts/jobshield"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23190
+
+[services.development]
+run = "python3 -m flask --app app run --host 0.0.0.0 --port $PORT"
+
+[services.production.build]
+args = ["uv", "sync", "--frozen", "--no-install-project"]
+
+[services.production.run]
+args = ["uv", "run", "--frozen", "python", "-m", "gunicorn", "--chdir", "artifacts/jobshield", "--bind", "0.0.0.0:23190", "app:app"]
+
+[services.production.run.env]
+PORT = "23190"
+PYTHONUNBUFFERED = "1"
+
+[services.production.health.startup]
+path = "/"
+
+[services.env]
+PORT = "23190"

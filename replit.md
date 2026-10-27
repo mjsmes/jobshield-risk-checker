@@ -1,45 +1,37 @@
-# [Project name]
+# JobShield — Job Advert Risk Checker
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+A privacy-first Flask app that checks pasted job adverts and messages for common warning signs before a job seeker shares personal information or pays a fee.
 
 ## Run & Operate
 
-- `pnpm --filter @workspace/api-server run dev` — run the API server (port 5000)
-- `pnpm run typecheck` — full typecheck across all packages
-- `pnpm run build` — typecheck + build all packages
-- `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
-- `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
-- Required env: `DATABASE_URL` — Postgres connection string
+- Start the **JobShield** web workflow to run the app in the preview.
+- `cd artifacts/jobshield && python3 -m unittest discover -s tests -v` — run the automated tests.
 
 ## Stack
 
-- pnpm workspaces, Node.js 24, TypeScript 5.9
-- API: Express 5
-- DB: PostgreSQL + Drizzle ORM
-- Validation: Zod (`zod/v4`), `drizzle-zod`
-- API codegen: Orval (from OpenAPI spec)
-- Build: esbuild (CJS bundle)
+- Python 3.13 and Flask
+- Jinja HTML templates and responsive CSS
+- Rule-based analysis only; no external AI or paid API
+- No database, login, or advert storage
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
-
-## Architecture decisions
-
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- `artifacts/jobshield/analysis_engine.py` — warning-sign rules and risk scoring.
+- `artifacts/jobshield/app.py` — Flask routes, request validation, and response headers.
+- `artifacts/jobshield/templates/` — checker and results pages.
+- `artifacts/jobshield/static/` — local styles, sample-text behavior, and favicon.
+- `artifacts/jobshield/tests/` — automated engine and route tests.
+- `artifacts/jobshield/README.md` — setup, feature, privacy, and limitation details.
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+JobShield analyzes a pasted job advert, email, or chat message for upfront payment requests, guaranteed or unusually high earnings, pressure to act immediately, requests for account credentials, and unusual contact methods. It displays a 0–100 risk indicator, matched wording, plain-language explanations, and safer next steps.
 
-## User preferences
+This is an automated preliminary check. It is not proof of fraud and does not verify a company's legitimacy.
 
-_Populate as you build — explicit user instructions worth remembering across sessions._
+## Architecture decisions
 
-## Gotchas
-
-_Populate as you build — sharp edges, "always run X before Y" rules._
-
-## Pointers
-
-- See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and package details
+- Submitted text is analyzed in memory and is not written to a database or file.
+- A fixed, explainable rule set is used instead of external services.
+- Jinja autoescaping is kept enabled, and result responses are marked `no-store`.
+- Risk points represent matched warning-sign categories, not a probability.
