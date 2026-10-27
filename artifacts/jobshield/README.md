@@ -6,17 +6,25 @@ JobShield is a small, mobile-friendly Flask app that checks a pasted job advert,
 
 Start the **JobShield** web workflow. It launches the Flask app and uses the port supplied by the workspace.
 
+## Requirements
+
+- Python 3.13 or newer.
+- Flask 3.1.3 or newer, below version 4, for the web app.
+- Gunicorn 26.2 or newer, below version 27, for production serving. It is included in `requirements.txt`; local development can also use Flask's built-in server.
+- The automated tests use Python's built-in `unittest` module; no separate test framework is required.
+
 ## Run as a standalone Flask app
 
-From the repository root:
+From the JobShield project directory (in this workspace, run `cd artifacts/jobshield` first):
 
 ```bash
-python3 -m pip install -r artifacts/jobshield/requirements.txt
-cd artifacts/jobshield
-python3 app.py
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+python app.py
 ```
 
-Then open the local address shown by Flask (port 5000 by default). Set `PORT` if your environment provides a different port.
+On Windows PowerShell, activate the environment with `.venv\Scripts\Activate.ps1` instead of the `source` command. Then open the local address shown by Flask (port 5000 by default). Set `PORT` if your environment provides a different port.
 
 ## Run the tests
 
