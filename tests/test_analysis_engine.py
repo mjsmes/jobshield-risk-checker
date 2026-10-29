@@ -7,7 +7,7 @@ JOBSHIELD_APP_DIR = Path(__file__).resolve().parents[1] / "artifacts" / "jobshie
 if str(JOBSHIELD_APP_DIR) not in sys.path:
     sys.path.insert(0, str(JOBSHIELD_APP_DIR))
 
-from analysis_engine import MAX_TEXT_LENGTH, analyze_text
+from analysis_engine import MAX_TEXT_LENGTH, analyze_text  # noqa: E402
 
 
 class AnalyzeTextTests(unittest.TestCase):
