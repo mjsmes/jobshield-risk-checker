@@ -13,28 +13,28 @@ Start the **JobShield** web workflow. It launches the Flask app and uses the por
 - Gunicorn 26.2 or newer, below version 27, for production serving. It is included in `requirements.txt`; local development can also use Flask's built-in server.
 - The automated tests use Python's built-in `unittest` module; no separate test framework is required.
 
-## Run as a standalone Flask app
+## Install and run locally
 
-From the JobShield project directory (in this workspace, run `cd artifacts/jobshield` first):
+From the repository root, create a virtual environment and install the app requirements:
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install -r requirements.txt
-python app.py
+python -m pip install -r artifacts/jobshield/requirements.txt
+python artifacts/jobshield/app.py
 ```
 
 On Windows PowerShell, activate the environment with `.venv\Scripts\Activate.ps1` instead of the `source` command. Then open the local address shown by Flask (port 5000 by default). Set `PORT` if your environment provides a different port.
 
 ## Run the tests
 
-From the app directory:
+From the repository root:
 
 ```bash
-python3 -m unittest discover -s tests -v
+python -m unittest discover -s tests -v
 ```
 
-The rule engine and Flask routes have automated tests, including input validation, bounded scoring, warning-sign evidence, security headers, and HTML escaping.
+The tests live in the repository-level `tests/` directory. The rule engine and Flask routes have automated tests, including input validation, bounded scoring, warning-sign evidence, security headers, and HTML escaping.
 
 ## Features
 
