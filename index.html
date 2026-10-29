@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f4f7f5">
+    <meta name="description" content="Check a job advert for common warning signs before you share personal information or pay a fee.">
+    <meta property="og:title" content="JobShield — Job Advert Risk Checker">
+    <meta property="og:description" content="A private, rule-based first check for common warning signs in job offers.">
+    <meta property="og:type" content="website">
+    <title>JobShield — Job Advert Risk Checker</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.svg') }}" type="image/svg+xml">
+    <link rel="stylesheet" href="{{ url_for('static', filename='jobshield.css') }}">
+    <script src="{{ url_for('static', filename='jobshield.js') }}" defer></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="/" aria-label="JobShield home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 36" fill="none">
+              <path d="M16 2.5 28 7v9.5c0 8-4.9 13.5-12 17C8.9 30 4 24.5 4 16.5V7l12-4.5Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
+              <path d="m10.5 17.3 3.7 3.8 7.6-8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="brand-name">Job<span>Shield</span></span>
+        </a>
+        <nav class="header-nav" aria-label="Main navigation">
+          <a href="#how-it-works">How it works</a>
+          <a href="#safe-search">Stay safer</a>
+        </nav>
+        <span class="privacy-pill"><span class="privacy-dot"></span> Private by design</span>
+      </header>
+
+      <main>
+        <section class="hero" aria-labelledby="page-title">
+          <div class="hero-copy">
+            <p class="eyebrow"><span class="eyebrow-line"></span> A smarter first check</p>
+            <h1 id="page-title">A second look<br>before you <em>say yes.</em></h1>
+            <p class="hero-description">Paste a job advert, email, or message. JobShield checks for common warning signs so you can pause, think, and decide what to do next.</p>
+            <div class="hero-proof">
+              <span class="proof-icon" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="none"><path d="M10 2.5 16 5v4.8c0 4-2.5 6.8-6 8.7-3.5-1.9-6-4.7-6-8.7V5l6-2.5Z" stroke="currentColor" stroke-width="1.6"/><path d="m7.4 9.8 1.7 1.7 3.5-3.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <span>No account. No saved adverts. Just a quick check.</span>
+            </div>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="orbit orbit-one"></div>
+            <div class="orbit orbit-two"></div>
+            <div class="art-shield">
+              <svg viewBox="0 0 124 140" fill="none">
+                <path d="M62 8 108 25v36c0 31-18.8 52-46 68C34.8 113 16 92 16 61V25L62 8Z" fill="#DDF2E8" stroke="#1E7659" stroke-width="4"/>
+                <path d="m41 68 14 14 29-31" stroke="#1E7659" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="floating-note note-top"><span class="note-dot dot-green"></span> Your text stays yours</div>
+            <div class="floating-note note-bottom"><span class="mini-spark">✳</span> Pause. Check. Decide.</div>
+          </div>
+        </section>
+
+        <section class="checker-card" aria-labelledby="checker-title">
+          <div class="checker-heading">
+            <div>
+              <p class="section-kicker">THE CHECKER</p>
+              <h2 id="checker-title">What did they send you?</h2>
+              <p class="checker-subtitle">Paste the words as they appeared. We’ll look for specific signals, not judge the whole company.</p>
+            </div>
+            <span class="input-badge">TEXT ONLY</span>
+          </div>
+
+          {% if error %}
+          <div class="form-error" role="alert">{{ error }}</div>
+          {% endif %}
+
+          <form action="{{ url_for('check_advert') }}" method="post">
+            <label class="visually-hidden" for="job-text">Job advert, email, WhatsApp message, or offer</label>
+            <textarea
+              id="job-text"
+              name="job_text"
+              rows="8"
+              maxlength="{{ max_text_length }}"
+              placeholder="Paste the job advert, email, WhatsApp message, or offer here…"
+              aria-describedby="text-help char-count"
+              required
+            ></textarea>
+            <div class="textarea-footer">
+              <span id="text-help" class="textarea-help">Remove your name, address, or other private details before pasting.</span>
+              <span id="char-count" class="char-count" aria-live="polite">0 / {{ "{:,}".format(max_text_length) }}</span>
+            </div>
+            <div class="form-actions">
+              <button class="button button-primary" type="submit">
+                Check Job Advert
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12M10 4l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <button class="button button-secondary" id="sample-button" type="button">Try a sample</button>
+            </div>
+          </form>
+
+          <div class="privacy-note">
+            <span class="lock-icon" aria-hidden="true">
+              <svg viewBox="0 0 18 18" fill="none"><rect x="3.25" y="7.5" width="11.5" height="8.25" rx="1.8" stroke="currentColor" stroke-width="1.4"/><path d="M5.75 7.5V5.25a3.25 3.25 0 0 1 6.5 0V7.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+            </span>
+            <p><strong>Your text is not stored.</strong> The check runs on this server for this request only. Avoid pasting personal information.</p>
+          </div>
+        </section>
+
+        <section class="how-section" id="how-it-works" aria-labelledby="how-title">
+          <div class="section-heading">
+            <p class="section-kicker">A CLEARER NEXT STEP</p>
+            <h2 id="how-title">A signal to pause, not a verdict.</h2>
+          </div>
+          <div class="steps-grid">
+            <article class="step-card">
+              <span class="step-number">01</span>
+              <h3>Paste the offer</h3>
+              <p>Check a listing, email, text, or chat message. Remove personal details first.</p>
+            </article>
+            <article class="step-card">
+              <span class="step-number">02</span>
+              <h3>Review the signals</h3>
+              <p>See the exact wording that matched a common warning-sign pattern.</p>
+            </article>
+            <article class="step-card">
+              <span class="step-number">03</span>
+              <h3>Verify independently</h3>
+              <p>Use official company contact details before sharing money or information.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="safe-panel" id="safe-search" aria-labelledby="safe-title">
+          <div class="safe-icon" aria-hidden="true">
+            <svg viewBox="0 0 28 28" fill="none"><path d="M14 3 24 7v7.8c0 6.6-4.1 11-10 14.2C8.1 25.8 4 21.4 4 14.8V7l10-4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m9.5 14.5 3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="safe-copy">
+            <p class="section-kicker">KEEP YOUR NEXT STEP SAFE</p>
+            <h2 id="safe-title">A few checks worth taking.</h2>
+            <ul class="safe-list">
+              <li><span class="list-check">✓</span> Find the employer’s official website yourself and verify the role there.</li>
+              <li><span class="list-check">✓</span> Never pay to apply, interview, secure a job, or receive basic training.</li>
+              <li><span class="list-check">✓</span> Never share passwords, PINs, OTPs, or account verification codes.</li>
+              <li><span class="list-check">✓</span> Slow down if someone insists you must act or pay immediately.</li>
+            </ul>
+          </div>
+          <span class="safe-watermark" aria-hidden="true">✓</span>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <a class="footer-brand" href="/">JobShield</a>
+        <p>An automated preliminary check. Not proof of fraud, and not a company verification service.</p>
+        <span>Stay thoughtful out there.</span>
+      </footer>
+    </div>
+  </body>
+</html>

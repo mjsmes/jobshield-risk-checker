@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f4f7f5">
+    <meta name="description" content="Review the warning signs matched in your job advert and consider safer next steps.">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Your JobShield Check — JobShield</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.svg') }}" type="image/svg+xml">
+    <link rel="stylesheet" href="{{ url_for('static', filename='jobshield.css') }}">
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="/" aria-label="JobShield home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 36" fill="none">
+              <path d="M16 2.5 28 7v9.5c0 8-4.9 13.5-12 17C8.9 30 4 24.5 4 16.5V7l12-4.5Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
+              <path d="m10.5 17.3 3.7 3.8 7.6-8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="brand-name">Job<span>Shield</span></span>
+        </a>
+        <span class="privacy-pill"><span class="privacy-dot"></span> Private by design</span>
+      </header>
+
+      <main class="results-main">
+        <a class="back-link" href="/">
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M16 10H4m0 0 6-6m-6 6 6 6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Check another advert
+        </a>
+
+        <div class="results-heading">
+          <p class="section-kicker">YOUR PRELIMINARY CHECK</p>
+          <h1>Here’s what stood out.</h1>
+          <p>These are patterns in the wording you pasted—not a determination about the sender or employer.</p>
+        </div>
+
+        <section class="score-card score-{{ result.category_key }}" aria-labelledby="score-title">
+          <div class="score-top">
+            <div class="score-intro">
+              <span class="score-label">RISK INDICATOR</span>
+              <h2 id="score-title">{{ result.category }} signals</h2>
+              <p>{{ result.summary }}</p>
+            </div>
+            <div class="score-number" aria-label="Risk score {{ result.score }} out of 100">
+              <strong>{{ result.score }}</strong>
+              <span>out of 100</span>
+            </div>
+          </div>
+          <div class="score-meter">
+            <div class="meter-labels"><span>Lower signal</span><span>More signals</span></div>
+            <progress value="{{ result.score }}" max="100" aria-label="Risk score"></progress>
+          </div>
+          <p class="score-disclaimer"><strong>Important:</strong> This is an automated preliminary check, not proof of fraud. JobShield cannot verify a company’s legitimacy, and a low score does not prove an offer is safe.</p>
+        </section>
+
+        <section class="findings-section" aria-labelledby="findings-title">
+          <div class="findings-heading">
+            <div>
+              <p class="section-kicker">MATCHED WORDING</p>
+              <h2 id="findings-title">Warning signs detected</h2>
+            </div>
+            <span class="finding-count">{{ result.findings|length }} {{ "signal" if result.findings|length == 1 else "signals" }}</span>
+          </div>
+
+          {% if result.findings %}
+          <div class="findings-list">
+            {% for finding in result.findings %}
+            <article class="finding-card">
+              <div class="finding-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 3.5 22 20.5H2l10-17Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 9v5m0 3h.01" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>
+              </div>
+              <div class="finding-content">
+                <div class="finding-title-row">
+                  <h3>{{ finding.title }}</h3>
+                  <span class="weight-pill">+{{ finding.weight }} points</span>
+                </div>
+                <p class="evidence-label">MATCHED TEXT</p>
+                <blockquote>“{{ finding.evidence }}”</blockquote>
+                <p class="finding-explanation">{{ finding.explanation }}</p>
+              </div>
+            </article>
+            {% endfor %}
+          </div>
+          {% else %}
+          <div class="no-findings">
+            <span class="no-findings-check" aria-hidden="true">✓</span>
+            <div>
+              <h3>No common warning signs matched.</h3>
+              <p>This only means the checker did not find its current patterns. It cannot confirm the job or employer is legitimate.</p>
+            </div>
+          </div>
+          {% endif %}
+        </section>
+
+        <section class="safe-panel results-safe" aria-labelledby="safe-title">
+          <div class="safe-icon" aria-hidden="true">
+            <svg viewBox="0 0 28 28" fill="none"><path d="M14 3 24 7v7.8c0 6.6-4.1 11-10 14.2C8.1 25.8 4 21.4 4 14.8V7l10-4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m9.5 14.5 3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="safe-copy">
+            <p class="section-kicker">BEFORE YOU REPLY</p>
+            <h2 id="safe-title">Take a moment to verify.</h2>
+            <ul class="safe-list">
+              <li><span class="list-check">✓</span> Visit the company’s official website using an address you find independently.</li>
+              <li><span class="list-check">✓</span> Don’t pay fees or share passwords, PINs, or one-time codes.</li>
+              <li><span class="list-check">✓</span> Ask questions and get a second opinion if anything feels rushed.</li>
+            </ul>
+          </div>
+          <span class="safe-watermark" aria-hidden="true">✓</span>
+        </section>
+        <div class="results-action">
+          <a class="button button-primary" href="/">Check another advert
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h12M10 4l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </main>
+
+      <footer class="site-footer">
+        <a class="footer-brand" href="/">JobShield</a>
+        <p>An automated preliminary check. Not proof of fraud, and not a company verification service.</p>
+        <span>Stay thoughtful out there.</span>
+      </footer>
+    </div>
+  </body>
+</html>
