@@ -7,8 +7,8 @@ text so users can review why each signal was raised.
 
 from __future__ import annotations
 
-import re
 from dataclasses import dataclass
+import re
 
 
 MAX_TEXT_LENGTH = 12_000

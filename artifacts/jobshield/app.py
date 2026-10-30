@@ -4,10 +4,9 @@ from __future__ import annotations
 
 import os
 
+from analysis_engine import MAX_TEXT_LENGTH, analyze_text
 from flask import Flask, render_template, request
 from werkzeug.exceptions import RequestEntityTooLarge
-
-from analysis_engine import MAX_TEXT_LENGTH, analyze_text
 
 
 app = Flask(__name__)
