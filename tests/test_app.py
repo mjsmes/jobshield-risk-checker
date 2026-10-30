@@ -2,12 +2,11 @@ import sys
 import unittest
 from pathlib import Path
 
-
 JOBSHIELD_APP_DIR = Path(__file__).resolve().parents[1] / "artifacts" / "jobshield"
 if str(JOBSHIELD_APP_DIR) not in sys.path:
     sys.path.insert(0, str(JOBSHIELD_APP_DIR))
 
-from app import app  # noqa: E402
+from app import app  # noqa: E402, RUF100
 
 
 class JobShieldRouteTests(unittest.TestCase):

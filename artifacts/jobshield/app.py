@@ -8,7 +8,6 @@ from analysis_engine import MAX_TEXT_LENGTH, analyze_text
 from flask import Flask, render_template, request
 from werkzeug.exceptions import RequestEntityTooLarge
 
-
 app = Flask(__name__)
 app.config["MAX_CONTENT_LENGTH"] = 65_536
 app.config["MAX_TEXT_LENGTH"] = MAX_TEXT_LENGTH
