@@ -10,7 +10,6 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 
-
 MAX_TEXT_LENGTH = 12_000
 
 
