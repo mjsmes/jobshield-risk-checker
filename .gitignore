@@ -57,3 +57,8 @@ Thumbs.db
 # Replit
 .cache/
 .local/
+
+# Python test coverage
+.coverage
+.coverage.*
+htmlcov/
