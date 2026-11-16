@@ -3,13 +3,15 @@
 from __future__ import annotations
 
 import os
+from pathlib import Path
 
 from flask import Flask, abort, render_template, request, send_from_directory
 from werkzeug.exceptions import RequestEntityTooLarge
 
 from analysis_engine import MAX_TEXT_LENGTH, analyze_text
 
-app = Flask(__name__, template_folder=".", static_folder=None)
+WEB_DIR = Path(__file__).resolve().parent / "jobshield_web"
+app = Flask(__name__, template_folder=str(WEB_DIR), static_folder=None)
 app.config["MAX_CONTENT_LENGTH"] = 65_536
 app.config["MAX_TEXT_LENGTH"] = MAX_TEXT_LENGTH
 
@@ -20,7 +22,7 @@ STATIC_ASSETS = frozenset({"favicon.svg", "jobshield.css", "jobshield.js"})
 def static_assets(filename):
     if filename not in STATIC_ASSETS:
         abort(404)
-    return send_from_directory(app.root_path, filename)
+    return send_from_directory(WEB_DIR, filename)
 
 
 @app.after_request
