@@ -32,6 +32,15 @@ class JobShieldRouteTests(unittest.TestCase):
         self.assertEqual(response.status_code, 400)
         self.assertIn(b"12,000 characters", response.data)
 
+    def test_request_size_limit_returns_413(self):
+        response = self.client.post(
+            "/check",
+            data={"job_text": "A" * 70_000},
+        )
+
+        self.assertEqual(response.status_code, 413)
+        self.assertIn(b"too large", response.data.lower())
+
     def test_user_text_is_html_escaped(self):
         payload = "Please send <script>alert(1)</script> your password."
         response = self.client.post("/check", data={"job_text": payload})
