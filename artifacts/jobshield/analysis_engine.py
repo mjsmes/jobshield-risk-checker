@@ -135,6 +135,24 @@ RULES = (
         ),
     ),
     Rule(
+        key="equipment_purchase",
+        title="You are told to buy work equipment from a specified supplier",
+        weight=25,
+        explanation=(
+            "A recruiter directing applicants to buy equipment from a named, "
+            "approved, or preferred supplier can be part of a job scam. "
+            "Verify the employer and supplier independently before paying."
+        ),
+        patterns=_patterns(
+            r"\b(?:buy|purchase|order)\b.{0,65}\b"
+            r"(?:laptops?|computers?|equipment|workstations?|phones?|tablets?|headsets?)\b"
+            r".{0,65}\b(?:approved|designated|preferred|our|company)\s+"
+            r"(?:suppliers?|vendors?|stores?|websites?)\b",
+            r"\b(?:approved|designated|preferred)\s+(?:suppliers?|vendors?)\b"
+            r".{0,65}\b(?:laptops?|computers?|equipment|workstations?|phones?|tablets?|headsets?)\b",
+        ),
+    ),
+    Rule(
         key="suspicious_contact",
         title="Contact is routed through an unusual channel",
         weight=15,

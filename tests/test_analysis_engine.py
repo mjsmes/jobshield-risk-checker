@@ -44,6 +44,32 @@ class AnalyzeTextTests(unittest.TestCase):
         result = analyze_text("Send your CV to hiring.team@gmail.com")
         self.assertIn("suspicious_contact", {item.key for item in result.findings})
 
+    def test_detects_equipment_purchase_supplier(self):
+        examples = (
+            "Buy a laptop from our approved supplier before starting.",
+            "Purchase your work equipment through our designated vendor.",
+        )
+        for advert in examples:
+            with self.subTest(advert=advert):
+                result = analyze_text(advert)
+                self.assertIn(
+                    "equipment_purchase",
+                    {item.key for item in result.findings},
+                )
+
+    def test_does_not_flag_employer_provided_equipment(self):
+        examples = (
+            "The company provides a free laptop for this role.",
+            "All work equipment is supplied by the employer.",
+        )
+        for advert in examples:
+            with self.subTest(advert=advert):
+                result = analyze_text(advert)
+                self.assertNotIn(
+                    "equipment_purchase",
+                    {item.key for item in result.findings},
+                )
+
     def test_returns_exact_matched_evidence(self):
         phrase = "Pay a training fee"
         result = analyze_text(f"To continue, {phrase} before starting.")
