@@ -1,4 +1,3 @@
-
 name: JobShield CI
 
 on:
@@ -9,7 +8,7 @@ permissions:
   contents: read
 
 jobs:
-  test:
+  python:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -34,4 +33,28 @@ jobs:
 
       - name: Enforce coverage threshold
         run: python -m coverage report --fail-under=70
-        
+
+  workspace:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.26.1
+
+      - name: Install workspace dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Typecheck and build workspace
+        run: pnpm run build
+        env:
+          PORT: 3000
+          BASE_PATH: /
