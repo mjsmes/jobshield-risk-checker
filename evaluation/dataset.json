@@ -1,0 +1,53 @@
+
+[
+  {
+    "id": "S01",
+    "label": "scam",
+    "text": "Congratulations! Pay KSh 1,500 registration fee to secure your job placement."
+  },
+  {
+    "id": "S02",
+    "label": "scam",
+    "text": "Earn guaranteed KSh 10,000 every day with no experience required."
+  },
+  {
+    "id": "S03",
+    "label": "scam",
+    "text": "Urgent! Apply within one hour or lose this employment opportunity."
+  },
+  {
+    "id": "S04",
+    "label": "scam",
+    "text": "Send your password and OTP to our recruiter to complete job registration."
+  },
+  {
+    "id": "S05",
+    "label": "scam",
+    "text": "Buy your training laptop from our approved supplier before starting work."
+  },
+  {
+    "id": "L01",
+    "label": "legitimate",
+    "text": "We are hiring a shop assistant. Apply through our official company website."
+  },
+  {
+    "id": "L02",
+    "label": "legitimate",
+    "text": "The position pays KSh 25,000 per month. Duties include customer service and stock management."
+  },
+  {
+    "id": "L03",
+    "label": "legitimate",
+    "text": "Never share your password or OTP with anyone claiming to be a recruiter."
+  },
+  {
+    "id": "L04",
+    "label": "legitimate",
+    "text": "Applicants do not pay any registration fees. Interviews will be held next Monday."
+  },
+  {
+    "id": "L05",
+    "label": "legitimate",
+    "text": "Contact our HR office by email or WhatsApp for more information about the vacancy."
+  }
+]

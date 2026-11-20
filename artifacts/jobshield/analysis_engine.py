@@ -108,8 +108,8 @@ RULES = (
         ),
         patterns=_patterns(
             r"\b(?:act|apply|respond|reply|confirm|pay)\s+"
-            r"(?:right\s+)?(?:now|immediately|today|urgently|within\s+"
-            r"\d+\s*(?:minutes?|hours?|days?))\b",
+            r"(?:right\s+)?(?:now|immediately|today|urgently|within)\s+"
+            r"(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten)\s*(?:minutes?|hours?|days?)\b",
             r"\b(?:today\s+only|limited\s+time|last\s+chance|offer\s+expires|"
             r"hurry|closing\s+soon|limited\s+(?:slots?|positions?|places?))\b",
         ),

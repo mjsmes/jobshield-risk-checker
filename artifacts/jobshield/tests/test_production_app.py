@@ -1,5 +1,6 @@
 import unittest
 
+from analysis_engine import analyze_text
 from app import app
 
 
@@ -65,6 +66,12 @@ class ProductionJobShieldRouteTests(unittest.TestCase):
             "frame-ancestors 'none'",
             response.headers["Content-Security-Policy"],
         )
+
+
+    def test_detects_written_number_urgency_deadline(self):
+        result = analyze_text("Apply within one hour or lose this employment opportunity.")
+        self.assertEqual(result.score, 15)
+        self.assertIn("urgency", [finding.key for finding in result.findings])
 
 
 if __name__ == "__main__":
