@@ -1,0 +1,25 @@
+# Git
+.git
+.github
+
+# Node workspace
+node_modules
+**/node_modules
+
+# Python environments and caches
+.venv
+**/.venv
+.pythonlibs
+**/__pycache__
+*.py[cod]
+*.egg-info
+
+# Test and coverage output
+.coverage
+.coverage.*
+htmlcov
+
+# Build and deployment output
+.output
+.vercel
+.cache
