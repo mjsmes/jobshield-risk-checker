@@ -110,5 +110,35 @@ class AnalyzeTextTests(unittest.TestCase):
             analyze_text("a" * (MAX_TEXT_LENGTH + 1))
 
 
+    def test_detects_fee_after_an_initial_no_fee_statement(self):
+        result = analyze_text(
+            "Applicants pay no fee. Successful candidates must pay a registration fee."
+        )
+        self.assertIn("upfront_payment", {item.key for item in result.findings})
+
+    def test_detects_password_request_after_a_denial(self):
+        result = analyze_text(
+            "We never ask for passwords. Send your password to complete registration."
+        )
+        self.assertIn("credentials", {item.key for item in result.findings})
+
+    def test_does_not_flag_employer_provided_free_laptop(self):
+        result = analyze_text("The company provides a free laptop.")
+        self.assertNotIn("equipment_purchase", {item.key for item in result.findings})
+
+    def test_detects_laptop_purchase_from_approved_supplier(self):
+        result = analyze_text(
+            "Buy your laptop from our approved supplier before training."
+        )
+        self.assertIn("equipment_purchase", {item.key for item in result.findings})
+
+    def test_does_not_flag_optional_whatsapp_contact(self):
+        result = analyze_text(
+            "WhatsApp is available, but applicants may also contact our official office."
+        )
+        self.assertNotIn("suspicious_contact", {item.key for item in result.findings})
+
+
+
 if __name__ == "__main__":
     unittest.main()
