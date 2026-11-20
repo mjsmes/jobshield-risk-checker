@@ -34,6 +34,10 @@ jobs:
       - name: Run tests with coverage
         run: python -m coverage run --source=app,analysis_engine -m unittest discover -s tests -v
 
+      - name: Run production Flask tests
+        working-directory: artifacts/jobshield
+        run: python -m unittest discover -s tests -v
+
       - name: Enforce coverage threshold
         run: python -m coverage report --fail-under=70
 
