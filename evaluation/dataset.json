@@ -1,4 +1,3 @@
-
 [
   {
     "id": "S01",
@@ -49,5 +48,205 @@
     "id": "L05",
     "label": "legitimate",
     "text": "Contact our HR office by email or WhatsApp for more information about the vacancy."
+  },
+  {
+    "id": "S06",
+    "label": "scam",
+    "text": "Pay a KSh 1,500 registration fee before your job interview."
+  },
+  {
+    "id": "S07",
+    "label": "scam",
+    "text": "Send a refundable processing fee to activate your employment account."
+  },
+  {
+    "id": "S08",
+    "label": "scam",
+    "text": "Send your password and OTP to receive your employment contract."
+  },
+  {
+    "id": "S09",
+    "label": "scam",
+    "text": "Buy your laptop from our approved supplier before starting work."
+  },
+  {
+    "id": "S10",
+    "label": "scam",
+    "text": "Earn guaranteed KSh 8,000 daily and pay a small application fee."
+  },
+  {
+    "id": "S11",
+    "label": "scam",
+    "text": "Apply immediately and pay the required registration fee today."
+  },
+  {
+    "id": "S12",
+    "label": "scam",
+    "text": "Pay a recruitment processing fee to reserve your position."
+  },
+  {
+    "id": "S13",
+    "label": "scam",
+    "text": "Deposit KSh 2,000 to secure your job placement."
+  },
+  {
+    "id": "S14",
+    "label": "scam",
+    "text": "Pay an application fee before our recruitment team reviews your CV."
+  },
+  {
+    "id": "S15",
+    "label": "scam",
+    "text": "We guarantee earnings of KSh 50,000 every week with no experience."
+  },
+  {
+    "id": "S16",
+    "label": "scam",
+    "text": "Purchase our mandatory starter kit from the supplier before training."
+  },
+  {
+    "id": "S17",
+    "label": "scam",
+    "text": "Pay a security deposit to confirm your employment."
+  },
+  {
+    "id": "S18",
+    "label": "scam",
+    "text": "Share your password and OTP to verify your identity for recruitment."
+  },
+  {
+    "id": "S19",
+    "label": "scam",
+    "text": "Respond within two hours and pay the interview booking fee."
+  },
+  {
+    "id": "S20",
+    "label": "scam",
+    "text": "Guaranteed monthly earnings are available after you pay a registration fee."
+  },
+  {
+    "id": "S21",
+    "label": "scam",
+    "text": "Pay a background check fee before we can offer you the position."
+  },
+  {
+    "id": "S22",
+    "label": "scam",
+    "text": "Pay an interview booking fee to secure your interview appointment."
+  },
+  {
+    "id": "S23",
+    "label": "scam",
+    "text": "Buy the required work uniform from our approved supplier before reporting."
+  },
+  {
+    "id": "S24",
+    "label": "scam",
+    "text": "Send your account password to the recruiter to complete onboarding."
+  },
+  {
+    "id": "S25",
+    "label": "scam",
+    "text": "Pay an account activation fee to unlock your employment benefits."
+  },
+  {
+    "id": "L06",
+    "label": "legitimate",
+    "text": "A supermarket is hiring a cashier for a full-time position."
+  },
+  {
+    "id": "L07",
+    "label": "legitimate",
+    "text": "Applicants should submit a CV and cover letter through the company careers portal."
+  },
+  {
+    "id": "L08",
+    "label": "legitimate",
+    "text": "The successful candidate will receive a written employment contract."
+  },
+  {
+    "id": "L09",
+    "label": "legitimate",
+    "text": "The warehouse assistant will help with stock counting and deliveries."
+  },
+  {
+    "id": "L10",
+    "label": "legitimate",
+    "text": "Shortlisted candidates will be invited for an interview at our Nairobi office."
+  },
+  {
+    "id": "L11",
+    "label": "legitimate",
+    "text": "The company provides paid annual leave and medical benefits."
+  },
+  {
+    "id": "L12",
+    "label": "legitimate",
+    "text": "Applicants must have a valid driving licence and two years of experience."
+  },
+  {
+    "id": "L13",
+    "label": "legitimate",
+    "text": "The position offers a monthly salary of KSh 30,000."
+  },
+  {
+    "id": "L14",
+    "label": "legitimate",
+    "text": "Customer service staff will receive workplace training from their supervisor."
+  },
+  {
+    "id": "L15",
+    "label": "legitimate",
+    "text": "Applications close on 15 December. Only shortlisted candidates will be contacted."
+  },
+  {
+    "id": "L16",
+    "label": "legitimate",
+    "text": "The company has published the job description on its official website."
+  },
+  {
+    "id": "L17",
+    "label": "legitimate",
+    "text": "The role involves answering customer questions and maintaining sales records."
+  },
+  {
+    "id": "L18",
+    "label": "legitimate",
+    "text": "Candidates should bring copies of their academic certificates to the interview."
+  },
+  {
+    "id": "L19",
+    "label": "legitimate",
+    "text": "The employer will provide the equipment needed to perform the job."
+  },
+  {
+    "id": "L20",
+    "label": "legitimate",
+    "text": "The recruitment process includes an application review and two interviews."
+  },
+  {
+    "id": "L21",
+    "label": "legitimate",
+    "text": "This is a permanent retail assistant position with fixed working hours."
+  },
+  {
+    "id": "L22",
+    "label": "legitimate",
+    "text": "Applicants can review the company's benefits and job requirements online."
+  },
+  {
+    "id": "L23",
+    "label": "legitimate",
+    "text": "The selected employee will report to the store manager every morning."
+  },
+  {
+    "id": "L24",
+    "label": "legitimate",
+    "text": "The company welcomes applications from qualified entry-level candidates."
+  },
+  {
+    "id": "L25",
+    "label": "legitimate",
+    "text": "The vacancy is advertised on the employer's official careers page."
   }
 ]

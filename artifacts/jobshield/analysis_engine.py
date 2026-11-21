@@ -54,21 +54,13 @@ RULES = (
             "to apply, interview, get hired, or receive basic training. Verify "
             "any fee independently before sending money."
         ),
-        patterns=_patterns(
-            r"\b(?:pay|send|transfer|deposit|top\s*up|purchase)\s+"
-            r"(?:(?:a|an|the|your|initial)\s+)?"
-            r"(?:(?:registration|application|processing|training|interview|"
-            r"security|activation|placement|clearance|administrative)\s+)?"
-            r"(?:fees?|deposits?|payments?|charges?)\b",
-            r"\b(?:registration|application|processing|training|interview|"
-            r"security|activation|placement|clearance|administrative)\s+fees?\b",
-            r"\bfees?\s+(?:are\s+)?(?:required|mandatory|must\s+be\s+paid)\b",
-            r"\b(?:deposits?|payments?|charges?)\s+(?:are\s+)?"
-            r"(?:required|mandatory|must\s+be\s+paid)\b",
-            r"\b(?:pay|send|transfer)\s+(?:ksh|kes|usd|us\$|[$£€])?\s*"
-            r"\d[\d,.]*(?:\s?(?:ksh|kes|usd|dollars?|shillings?))?\b"
-            r".{0,45}\b(?:fee|deposit|training|registration|processing|slot|placement)\b",
-        ),
+patterns=_patterns(
+    r"\b(?:pay|send|transfer|deposit|top\s*up|purchase)\s+(?:(?:a|an|the|your|our|initial|mandatory|required|refundable|non-refundable)\s+)*(?:(?:job\s+recruitment|application|account|employment|interview|background\s+check|registration|processing|training|security|activation|placement|clearance|administrative|booking)\s+)*(?:fees?|deposits?|payments?|charges?)\b",
+    r"\b(?:send|pay|transfer|deposit)\s+(?:money|cash|funds)\s+(?:for|towards|to)\s+(?:a\s+)?(?:job|employment|placement|recruitment|interview|application|registration|training)\b",
+    r"\b(?:job\s+)?(?:placement|background\s+check|interview\s+booking|booking|application|registration|recruitment|processing|training)\s+(?:fees?|deposits?|charges?|payments?)\b",
+    r"\b(?:fees?|deposits?|payments?|charges?)\s+(?:are\s+)?(?:required|mandatory|must\s+be\s+paid)\b",
+    r"\b(?:pay|send|transfer|deposit)\s+(?:(?:ksh|kes|usd|us\$|[$£€])\s*)?\d[\d,.]*(?:\s?(?:ksh|kes|usd|dollars?|shillings?))?\b.{0,60}\b(?:fee|deposit|job|placement|interview|application|registration|training|background|booking|secure|reserve)\b",
+    ),
     ),
     Rule(
         key="guaranteed_earnings",
@@ -80,22 +72,9 @@ RULES = (
             "with independently verified listings."
         ),
         patterns=_patterns(
-            r"\b(?:guaranteed|assured|risk[- ]free)\s+"
-            r"(?:high|large|huge|unlimited|easy)\s+"
-            r"(?:income|earnings?|salary|pay|profit)\b",
-            r"\b(?:guaranteed|assured)\b.{0,45}\b"
-            r"(?:income|earnings?|salary|pay|profit|returns?)\b",
-            r"\b(?:earn|make|income|salary|pay)\b.{0,45}\b"
-            r"(?:up to\s+)?(?:ksh|kes|usd|us\$|[$£€])\s*"
-            r"(?:\d{1,3}(?:[,.]\d{3})+|\d{3,})"
-            r"(?:\s?(?:k|thousand|million))?\b"
-            r".{0,24}\b(?:per\s+(?:day|week|month|hour)|(?:a|each|every)\s+"
-            r"(?:day|week|month)|daily|weekly|monthly)\b",
-            r"\b(?:earn|make|paid)\b.{0,35}\b(?:up to\s+)?"
-            r"(?:\d{1,3}(?:[,.]\d{3})+|\d{4,})"
-            r"(?:\s?(?:k|thousand|million))?\s+"
-            r"(?:per\s+(?:day|week|month)|(?:a|each|every)\s+"
-            r"(?:day|week|month)|daily|weekly|monthly)\b",
+            r"\b(?:guarantee|guaranteed|assure|assured)\s+(?:(?:you|your)\s+)?(?:an?\s+)?(?:(?:high|easy|unlimited|large|huge|risk[- ]free)\s+)?(?:income|earnings?|salary|pay|profit|returns?)\b",
+            r"\b(?:guaranteed|assured)\b.{0,60}\b(?:income|earnings?|salary|pay|profit|returns?)\b",
+            r"\b(?:earn|make|paid|income|salary|pay)\b.{0,60}(?:\b(?:ksh|kes|usd|us\$)|[$£€])\s*\d[\d,.]*\b.{0,35}\b(?:per\s+(?:day|week|month|hour)|(?:a|each|every)\s+(?:day|week|month)|daily|weekly|monthly)\b",
         ),
     ),
     Rule(
@@ -144,12 +123,9 @@ RULES = (
             "Verify the employer and supplier independently before paying."
         ),
         patterns=_patterns(
-            r"\b(?:buy|purchase|order)\b.{0,65}\b"
-            r"(?:laptops?|computers?|equipment|workstations?|phones?|tablets?|headsets?)\b"
-            r".{0,65}\b(?:approved|designated|preferred|our|company)\s+"
-            r"(?:suppliers?|vendors?|stores?|websites?)\b",
-            r"\b(?:approved|designated|preferred)\s+(?:suppliers?|vendors?)\b"
-            r".{0,65}\b(?:laptops?|computers?|equipment|workstations?|phones?|tablets?|headsets?)\b",
+            '\\b(?:buy|purchase|order)\\b.{0,80}\\b(?:mandatory\\s+|required\\s+)?(?:starter\\s+kits?|work\\s+uniforms?|uniforms?|laptops?|computers?|equipment|workstations?|phones?|tablets?|headsets?|tools?|supplies?)\\b',
+            '\\b(?:starter\\s+kits?|work\\s+uniforms?|uniforms?)\\b.{0,80}\\b(?:supplier|vendor|store|website)\\b',
+            '\\b(?:approved|designated|preferred|company)\\s+(?:suppliers?|vendors?|stores?|websites?)\\b.{0,65}\\b(?:laptops?|computers?|equipment|workstations?|phones?|tablets?|headsets?|starter\\s+kits?|uniforms?)\\b',
         ),
     ),
     Rule(
